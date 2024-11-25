@@ -1,31 +1,26 @@
 package csci.ooad.modelAgnosticQueryBuilder;
 
-import csci.ooad.modelAgnosticQueryBuilder.QueryBuilder.QueryBuilder;
-import csci.ooad.modelAgnosticQueryBuilder.QueryStrategy.MongoQueryStrategy;
-import csci.ooad.modelAgnosticQueryBuilder.QueryStrategy.PostgreSQLQueryStrategy;
-
-import java.util.List;
+import csci.ooad.modelAgnosticQueryBuilder.Query.Query;
+import csci.ooad.modelAgnosticQueryBuilder.Query.QueryBuilder;
+import csci.ooad.modelAgnosticQueryBuilder.QueryExecutor.IQueryExecutor;
+import csci.ooad.modelAgnosticQueryBuilder.QueryExecutor.MongoQueryExecutor;
+import csci.ooad.modelAgnosticQueryBuilder.QueryExecutor.PostgreSQLQueryExecutor;
 
 // TODO: implement tests for query creation
 public class Main {
     public static void main(String[] args) {
-        String mongoQuery = QueryBuilder.newBuilder()
-                .useDatabase("myDatabase")
-                .selectColumn(List.of("name", "email"))
-                .from("users")
-                .where(new Condition("age", Condition.LESS_THAN_OR_EQUAL, 25))
-                // .where(new Condition("city", Condition.EQUALS, "New York"))
-                .build(new MongoQueryStrategy());
-        System.out.println("MongoDB Query:\n" + mongoQuery);
+        Query query = QueryBuilder.newBuilder()
+                .useDatabase("csci5448")
+                .from("sharded_trips")
+                .where(new Condition("tripduration", Condition.GREATER_THAN_OR_EQUAL, 100000))
+                .where(new Condition("usertype", Condition.EQUALS, "Customer"))
+                .build();
 
-        // this works nicely! the above doesn't :(
-        String postgresQuery = QueryBuilder.newBuilder()
-                .useDatabase("myDatabase")
-                .selectColumn(List.of("name", "email"))
-                .from("users")
-                .where(new Condition("age", Condition.LESS_THAN_OR_EQUAL, 30))
-                .where(new Condition("active", Condition.IS_NOT_NULL))
-                .build(new PostgreSQLQueryStrategy());
-        System.out.println("PostgreSQL Query:\n" + postgresQuery);
+        IQueryExecutor mongoExecutor = new MongoQueryExecutor();
+        mongoExecutor.execute(query);
+
+        IQueryExecutor postgresExecutor = new PostgreSQLQueryExecutor();
+        postgresExecutor.execute(query);
     }
 }
+

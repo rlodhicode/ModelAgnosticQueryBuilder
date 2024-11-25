@@ -1,7 +1,6 @@
-package csci.ooad.modelAgnosticQueryBuilder.QueryBuilder;
+package csci.ooad.modelAgnosticQueryBuilder.Query;
 
 import csci.ooad.modelAgnosticQueryBuilder.Condition;
-import csci.ooad.modelAgnosticQueryBuilder.QueryStrategy.IQueryStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +8,8 @@ import java.util.List;
 public class QueryBuilder {
     private String database;
     private String tableOrCollection;
-    private List<String> columns = new ArrayList<>();
-    private List<Condition> conditions = new ArrayList<>();
+    private final List<String> columns = new ArrayList<>();
+    private final List<Condition> conditions = new ArrayList<>();
 
     public static QueryBuilder newBuilder() {
         return new QueryBuilder();
@@ -36,7 +35,7 @@ public class QueryBuilder {
         return this;
     }
 
-    public String build(IQueryStrategy strategy) {
-        return strategy.buildQuery(database, tableOrCollection, columns, conditions);
+    public Query build() {
+        return new Query(database, tableOrCollection, columns, conditions);
     }
 }
