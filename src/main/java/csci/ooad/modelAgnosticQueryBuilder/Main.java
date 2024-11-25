@@ -7,6 +7,8 @@ import csci.ooad.modelAgnosticQueryBuilder.QueryExecutor.MongoQueryExecutor;
 import csci.ooad.modelAgnosticQueryBuilder.QueryExecutor.PostgreSQLQueryExecutor;
 
 // TODO: implement tests for query creation
+// TODO: create PG DB in app outside src directory.
+//          have a docker-compose.yaml with some init.db data
 public class Main {
     public static void main(String[] args) {
         Query query = QueryBuilder.newBuilder()
