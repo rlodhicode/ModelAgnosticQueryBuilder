@@ -19,8 +19,8 @@ public class Condition {
         this(field, operator, null);
     }
 
-    // TODO: can we make this constructor a record? we can override the toString and potentially have the above
-    //          constructor in our record class as well.
+    // TODO: can we make this constructor a record? we can override the toString and create
+    //          a default Condition with a null predicate, eliminates the above constructor
     public Condition(String field, String operator, Object predicate) {
         if (field == null || operator == null) {
             throw new IllegalArgumentException("Field and operator cannot be null");
