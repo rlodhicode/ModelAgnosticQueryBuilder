@@ -13,13 +13,14 @@ public class Condition {
 
     private final String field;
     private final String operator;
-    private final Object predicate; // Optional value for the condition
+    private final Object predicate;
 
-    // Constructors
     public Condition(String field, String operator) {
         this(field, operator, null);
     }
 
+    // TODO: can we make this constructor a record? we can override the toString and potentially have the above
+    //          constructor in our record class as well.
     public Condition(String field, String operator, Object predicate) {
         if (field == null || operator == null) {
             throw new IllegalArgumentException("Field and operator cannot be null");
@@ -29,7 +30,6 @@ public class Condition {
         this.predicate = predicate;
     }
 
-    // Getters
     public String getField() {
         return field;
     }
