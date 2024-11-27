@@ -50,11 +50,10 @@ public class Condition {
         return field + " " + operator + " " + formatPredicate();
     }
 
-    // Helper to format the predicate value for output
     private String formatPredicate() {
         if (predicate instanceof String) {
-            return "'" + predicate + "'"; // Wrap strings in quotes
+            return "'" + predicate + "'";
         }
-        return predicate.toString(); // Use raw value for numbers, null, etc.
+        return predicate.toString();
     }
 }
