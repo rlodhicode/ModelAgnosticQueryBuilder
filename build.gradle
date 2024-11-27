@@ -23,8 +23,9 @@ dependencies {
     // MongoDB Utilities
     implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
 
-    // JOOQ
+    // Postgres
     implementation 'org.jooq:jooq:3.19.15'
+    implementation 'org.postgresql:postgresql:42.6.0'
 
     // JUnit testing
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
