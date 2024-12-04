@@ -35,4 +35,24 @@ public class QueryTest {
         assertTrue(query.conditions().contains(tripDurationCondition));
         assertTrue(query.conditions().contains(userTypeCondition));
     }
+
+    @Test
+    void testQueryToString() {
+        String databaseName = "test_db";
+        List<String> columns = Arrays.asList("field1", "field2");
+        String tableName = "test_table";
+        Condition condition = ConditionFactory.greaterThanOrEqual("field1", 10);
+
+        Query query = QueryBuilder.newBuilder()
+                .useDatabase(databaseName)
+                .selectColumns(columns.toArray(new String[0]))
+                .from(tableName)
+                .where(condition)
+                .build();
+
+        assertTrue(query.toString().contains(databaseName));
+        assertTrue(query.toString().contains(columns.toString()));
+        assertTrue(query.toString().contains(tableName));
+        assertTrue(query.toString().contains(condition.toString()));
+    }
 }
