@@ -12,13 +12,14 @@ public class Main {
         Query query = QueryBuilder.newBuilder()
                 .useDatabase("csci5448")
                 .from("sharded_demo")
-                .where(new Condition("tripduration", Condition.GREATER_THAN_OR_EQUAL, 100000))
-                .where(new Condition("usertype", Condition.EQUALS, "Customer"))
+                .where(ConditionFactory.greaterThanOrEqual("tripduration", 100000),
+                        ConditionFactory.equals("usertype", "Customer")
+                )
                 .build();
 
-        // NOTE: sharded mongo setup is a bit complicated and we don't have a DOCKERFILE to
+        // NOTE: sharded mongo setup is a bit complicated, and we don't have a DOCKERFILE to
         //          automate that process due to the requirements of Mongo DB Tools, and
-        //          set configuration requirements. To setup the mongo repository that is used
+        //          set configuration requirements. To set up the mongo repository that is used
         //          in this project, clone and follow the setup steps of the mongo_sharded_project
         //          repository: https://github.com/rlodhicode/mongo-sharded-project
         IQueryExecutor mongoExecutor = new MongoQueryExecutor();

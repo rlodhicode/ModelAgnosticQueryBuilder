@@ -35,6 +35,13 @@ public class QueryBuilder {
         return this;
     }
 
+    public QueryBuilder where(Condition... conditions) {
+        for (Condition condition : conditions) {
+            where(condition);
+        }
+        return this;
+    }
+
     public Query build() {
         return new Query(database, tableOrCollection, columns, conditions);
     }
