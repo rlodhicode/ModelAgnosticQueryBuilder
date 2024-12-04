@@ -3,6 +3,7 @@ package csci.ooad.modelAgnosticQueryBuilder.Query;
 import csci.ooad.modelAgnosticQueryBuilder.Condition;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class QueryBuilder {
@@ -20,8 +21,8 @@ public class QueryBuilder {
         return this;
     }
 
-    public QueryBuilder selectColumn(List<String> columns) {
-        this.columns.addAll(columns);
+    public QueryBuilder selectColumns(String... columns) {
+        Collections.addAll(this.columns, columns);
         return this;
     }
 

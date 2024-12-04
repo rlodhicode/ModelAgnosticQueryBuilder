@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         Query query = QueryBuilder.newBuilder()
                 .useDatabase("csci5448")
+                .selectColumns("tripduration", "start_station_id")
                 .from("sharded_demo")
                 .where(ConditionFactory.greaterThanOrEqual("tripduration", 100000),
                         ConditionFactory.equals("usertype", "Customer")
