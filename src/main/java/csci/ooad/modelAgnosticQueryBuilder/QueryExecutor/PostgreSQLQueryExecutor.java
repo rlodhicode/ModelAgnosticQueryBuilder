@@ -12,8 +12,8 @@ import java.util.List;
 public class PostgreSQLQueryExecutor implements IQueryExecutor {
     @Override
     public void execute(Query query) {
-        // TODO: constantize this
-        String connectionString = "jdbc:postgresql://localhost:5432/" + query.database();
+        final String baseConnectionString = "jdbc:postgresql://localhost:5432/";
+        String connectionString = baseConnectionString + query.database();
         try (Connection connection = DriverManager.getConnection(connectionString, "admin", "admin")) {
             DSLContext dsl = DSL.using(connection);
 
