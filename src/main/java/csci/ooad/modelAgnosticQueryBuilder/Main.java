@@ -6,7 +6,6 @@ import csci.ooad.modelAgnosticQueryBuilder.QueryExecutor.IQueryExecutor;
 import csci.ooad.modelAgnosticQueryBuilder.QueryExecutor.MongoQueryExecutor;
 import csci.ooad.modelAgnosticQueryBuilder.QueryExecutor.PostgreSQLQueryExecutor;
 
-// TODO: implement tests for query creation
 public class Main {
     public static void main(String[] args) {
         Query query = QueryBuilder.newBuilder()
